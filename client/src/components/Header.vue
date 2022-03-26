@@ -11,7 +11,7 @@ const props = defineProps({
 
 /**
  * It manage what to do on "go back" button click
- * @returns {string} the value of onGoBack prop
+ * @returns {string} the value of "onGoBack" prop
  */
 function onGoBackClick():string|Function {
     if (typeof props.onGoBack === "function"){
