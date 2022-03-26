@@ -39,14 +39,14 @@ function onGoBackClick(){
     </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped> 
     .header-container {
-        background: rgb(var(--clr-black), 0.8);
+        background: rgba($clr-black, 0.8);
         height: 100px;
         min-width: 100%;
         flex-direction: row !important;
         align-items: center;
-        font-size: var(--font-size-m);
+        font-size: $font-size-m;
         font-weight: 800;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
@@ -79,18 +79,18 @@ function onGoBackClick(){
 
         @while ($i * 100) <= 100 {
             #{$i*100 + "%"} {
-                background: linear-gradient(to right, rgba(var(--clr-green), 1 - $i), rgba(var(--clr-green), $i), rgba(var(--clr-green), 1 - $i))
+                background: linear-gradient(to right, rgba($clr-green, 1 - $i), rgba($clr-green, $i), rgba($clr-green, 1 - $i))
             }
             $i: $i + $step
         }
     }
 
     //media querys
-    // @media screen and (max-width: $phone) {
-    //     .header-container{
-    //         grid-template-columns: 1fr 0fr 1fr;
-    //         max-height: 60px;
-    //         position: sticky;
-    //     }
-    // }
+    @media screen and (max-width: $phone) {
+        .header-container{
+            grid-template-columns: 1fr 0fr 1fr;
+            max-height: 60px;
+            position: sticky;
+        }
+    }
 </style>
