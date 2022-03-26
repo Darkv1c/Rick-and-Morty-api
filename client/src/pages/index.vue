@@ -1,10 +1,14 @@
 <template>
   <div class="d-flex index-container">
     <Header title="Rick & Morty" class="index-header"/>
+    <h2 class="test">Hola</h2>
   </div>
 </template>
 
 <style lang="scss" scoped>
+.test{
+    color: $red;
+}
   .index-container{
     height: 100vh;
   }

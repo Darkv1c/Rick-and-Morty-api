@@ -9,12 +9,10 @@ const router = createRouter({
 })
 
 const app = createApp(App)
-//add global components 
+//add global components
 for (let prop in components){
     app.component(prop, components[prop as keyof Component])
 }
 
 app.use(router)
 app.mount('#app')
-
-console.log(components)
