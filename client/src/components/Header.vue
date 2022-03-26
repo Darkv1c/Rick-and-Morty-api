@@ -1,21 +1,25 @@
 <script setup lang="ts">
 
 const props = defineProps({
-    /** Indicates what to do on back button click, if a route (string) is passed 
-     it will redirect to that route, if a function is passed it will run it
+    /** Indicates what to do on "go back" button click, if a route (string) is passed by parameter
+     it will redirect to that route, if it's a function it will run it
     */
     onGoBack: [String, Function],
     /** Text to show in the header */
     title: String
 })
 
-function onGoBackClick(){
+/**
+ * It manage what to do on "go back" button click
+ * @returns {string} the value of onGoBack prop
+ */
+function onGoBackClick():string|Function {
     if (typeof props.onGoBack === "function"){
         return props.onGoBack()
     }
 
-    window.location.hash = props.onGoBack || '/'
-}    
+    return window.location.hash = props.onGoBack || '/'
+} 
 </script>
 
 <template >
@@ -32,9 +36,6 @@ function onGoBackClick(){
             <span v-if="title">
                 {{title}}
             </span>
-        </div>
-        <div>
-            
         </div>
     </div>
 </template>
