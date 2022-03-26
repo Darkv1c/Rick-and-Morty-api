@@ -1,6 +1,7 @@
 <template>
   <div class="d-flex index-container">
     <Header title="Rick & Morty" class="index-header"/>
+    <Card :object="{}"/>
   </div>
 </template>
 
