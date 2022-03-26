@@ -15,7 +15,8 @@
     "typescript": "^4.5.4",
     "vite": "^2.8.0",
     "vite-plugin-pages": "^0.22.0",
-    "vue-router": "^4.0.14",
+    "vue-auto-routes": "^2.2.0",
+    "vue-router": "4",
     "vue-tsc": "^0.29.8"
   }
 }

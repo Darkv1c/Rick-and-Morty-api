@@ -1,13 +1,13 @@
 <template lang="">
-  <div>
-    <router-view/>
-  </div>
+    <div>
+        Adiooooooos
+    </div>
 </template>
 <script lang="ts">
 export default {
-  
+    
 }
 </script>
-<style lang="scss">
-  
+<style lang="">
+    
 </style>
