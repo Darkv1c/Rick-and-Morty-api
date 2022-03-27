@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useCharacterStore } from '../store'
 import CardList from '../components/CardList.vue';
@@ -8,9 +7,7 @@ import { computed } from '@vue/reactivity';
 const characterStore = useCharacterStore()
 const { characterList } = storeToRefs(characterStore)
 
-onBeforeMount(async () => {
-	await characterStore.getCharacters(0)
-})
+characterStore.getCharacters(0)
 
 /** Sets the fields to show in the card */
 const getFields = computed(() => {
@@ -29,6 +26,7 @@ const getFields = computed(() => {
 			v-if="characterList"
 			:fields="getFields"
 			:list="characterList.results"
+			img-property="image"
 		/>
 	</div>
 </template>

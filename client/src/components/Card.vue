@@ -11,7 +11,7 @@ const props = defineProps({
     fields: Object,
     /** Indicates number of the card */
     identifier: Number,
-    /** the background of the card, it has to be passad like a background-image css property */
+    /** the url of the image to show in the card */
     background: String
 })
 
@@ -79,16 +79,14 @@ function setShowText(show:boolean) {
                 padding: 10%;
                 animation: gradientChange;
                 animation-delay: 0;
-                animation-duration: .25s;
+                animation-duration: .15s;
                 animation-iteration-count: infinite;
                 animation-direction: alternate;
             }
         }
-        @for $i from 0 to 10 {
-            &:hover > .card-sub-container {
-                transform: rotatey(180deg);
-                transition: all .5s ease-in-out 0s;                
-            }
+        &:hover > .card-sub-container {
+            transform: rotatey(180deg);
+            transition: all .5s ease-in-out 0s;                
         }
     }
 
@@ -99,9 +97,9 @@ function setShowText(show:boolean) {
         
         @while $i <= 1  {
             #{$i*100 + "%"} {
-                background: repeating-linear-gradient(to bottom, rgba(var(--clr-black), $base + ($range * $i)), 
-                rgba(var(--clr-black), $base + ($range -  $range * $i)), rgba(var(--clr-black), $base + ($range * $i)), 
-                rgba(var(--clr-black), $base + ($range -  $range * $i)) 5%);
+                background: repeating-linear-gradient(to bottom, rgba($clr-black, $base + ($range * $i)), 
+                rgba($clr-black, $base + ($range -  $range * $i)), rgba($clr-black, $base + ($range * $i)), 
+                rgba($clr-black, $base + ($range -  $range * $i)) 5%);
             }
             $i: $i + 0.01
         }
@@ -112,7 +110,7 @@ function setShowText(show:boolean) {
             display: flex;
             min-width: 100%;
             margin: 0;
-            background: rgba(var(--clr-black), 0.5);
+            background: rgba($clr-black, 0.5);
             max-height: 30px;
             border-radius: 0;
             position: relative;
