@@ -2,9 +2,6 @@
 import { computed } from '@vue/reactivity';
 import { ref } from 'vue'
 
-let showTextFunction:ReturnType<typeof setTimeout>
-
-let showText = ref(false)
 
 const props = defineProps({
     /** Info to show in the cart */
@@ -14,6 +11,9 @@ const props = defineProps({
     /** the url of the image to show in the card */
     background: String
 })
+
+let showTextFunction:ReturnType<typeof setTimeout>
+let showText = ref(false)
 
 /** A list with the props of the object
  * @example [{name: 'Jhon'}, {'last-name': 'Doe'}]

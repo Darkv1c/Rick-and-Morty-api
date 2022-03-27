@@ -13,6 +13,8 @@ const props = defineProps({
     imgProperty: {type: String, default: ''}
 })
 
+const emit = defineEmits(['onCardClick'])
+
 /** Gets the object fields to pass by parameter to the card
  * @param {Object} element the element from where to obtain the info
  */
@@ -25,13 +27,15 @@ function getCardFieldsList(element:{[key: string]: string}) : Object {
 
     return response
 }
-
 /** Gets the image url from an object
  * @param {any} element The object with the image
  * @param {string} propertyName The name of the property where is the url
  */
 function getImgUrl(element:{[key: string]: string}, propertyName:string):string{
     return element[propertyName]
+}
+function onClick(element:{ [key: string]: string; }){
+    emit('onCardClick', element.id)
 }
 </script>
 
@@ -41,6 +45,7 @@ function getImgUrl(element:{[key: string]: string}, propertyName:string):string{
             v-for="(element, n) in list" :key="'card' + n"            
             :fields="getCardFieldsList(element)"
             :background="getImgUrl(element, imgProperty)"
+            @click="onClick(element)"
         />
     </div>
 </template>

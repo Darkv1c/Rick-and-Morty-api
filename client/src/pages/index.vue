@@ -4,11 +4,12 @@ import { useCharacterStore } from '../store'
 import CardList from '../components/CardList.vue';
 import { computed } from '@vue/reactivity';
 import Pagination from '../components/Pagination.vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const characterStore = useCharacterStore()
 const { characterList } = storeToRefs(characterStore)
 const route = useRoute()
+const router = useRouter()
 
 characterStore.getCharacters(0)
 
@@ -24,6 +25,9 @@ const getFields = computed(() => {
 async function loadPage(){
 	characterStore.getCharacters(Number(route.query.page))
 }
+function goToDetails(characterId:string){
+	router.push('/character/' + characterId)
+}
 </script>
 
 <template>
@@ -34,6 +38,7 @@ async function loadPage(){
 			:fields="getFields"
 			:list="characterList.results"
 			img-property="image"
+			@onCardClick="goToDetails"		
 		/>
 		<Pagination :max-per-view="10" :last-index="characterList?.info.pages" @click="loadPage" />
 	</div>

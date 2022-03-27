@@ -43,11 +43,11 @@ function onGoBackClick():string|Function {
 <style lang="scss" scoped> 
     .header-container {
         background: rgba($clr-black, 0.8);
-        height: 100px;
+        height: 150px;
         min-width: 100%;
         flex-direction: row !important;
         align-items: center;
-        font-size: $font-size-m;
+        font-size: $font-size-sm;
         font-weight: 800;
         display: grid;
         grid-template-columns: 1fr 2fr 1fr;
