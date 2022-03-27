@@ -6,7 +6,7 @@ const props = defineProps({
      * the name of the property from where take the value of the field
      * @example {Name: 'name', City: 'city', Department: 'state' }
      */
-    fields: {type: Object, require: true},
+    fields: {type: Object, require: true, default: ()=>({})},
     /** An array of objects */
     list: {type: Array, require: true}
 })
@@ -19,9 +19,12 @@ const cardFieldsList = computed(() => {
         for (const element of props.list) {
             if (typeof element === 'object'){
                 for (const prop in element) {
-                    auxObject = {
-                        ...auxObject,
-                        [prop]: element[prop as keyof {}]
+                    let validKeys = Object.values(props.fields)
+                    if (validKeys.includes(prop)){
+                        auxObject = {
+                            ...auxObject,
+                            [prop]: element[prop as keyof {}]
+                        }
                     }
                 }
             }
@@ -38,7 +41,7 @@ const cardFieldsList = computed(() => {
     <div class="card-list-container d-flex">
         <Card
             v-for="(element, n) in list" :key="'card' + n"            
-            :fields="element"
+            :fields="cardFieldsList"
             background="url('https://lenguajejs.com/vuejs/componentes/composition-api/options-api-composition-api.png')"
         />
     </div>

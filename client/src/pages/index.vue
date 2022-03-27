@@ -2,8 +2,8 @@
 import { onBeforeMount } from 'vue'
 import { storeToRefs } from 'pinia';
 import { useCharacterStore } from '../store'
-import { character } from '../store/types'
 import CardList from '../components/CardList.vue';
+import { computed } from '@vue/reactivity';
 
 const characterStore = useCharacterStore()
 const { characterList } = storeToRefs(characterStore)
@@ -12,17 +12,14 @@ onBeforeMount(async () => {
 	await characterStore.getCharacters(0)
 })
 
-/** Gets the necessary properties of the character object to show inthe fields
- * @param {character} character the character object with the info
- */
-function getFields(character: character) {
-	if (!character) return {}
+/** Sets the fields to show in the card */
+const getFields = computed(() => {
 	return {
-		Name: character.name,
-		Species: character.species,
-		Status: character.status
+		Name: 'name',
+		Species: 'species',
+		Status: 'status'
 	}
-}
+})
 </script>
 
 <template>
@@ -30,7 +27,7 @@ function getFields(character: character) {
 		<Header title="Rick & Morty" class="index-header" />
 		<CardList
 			v-if="characterList"
-			:fields="{Name: 'name', Species: 'species', Status: 'status'}"
+			:fields="getFields"
 			:list="characterList.results"
 		/>
 	</div>
