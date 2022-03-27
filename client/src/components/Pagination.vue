@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from '@vue/reactivity';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const emit = defineEmits(['onClick'])
 const route = useRoute()
+const router = useRouter()
 
 let block = ref(0)
 let page = Number(route.query.page) || 1
@@ -28,7 +29,9 @@ const isLastBlock = computed(() => {
 
 /** It passes by query the page to go */
 function goToPage(page: number) {
-    window.location.hash = window.location.search = '?page=' + page
+    router.push({
+        query: { ...route.query, page}
+    })
     /** something to do on click */
     emit('onClick')
 }
