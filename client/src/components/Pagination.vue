@@ -29,11 +29,10 @@ const isLastBlock = computed(() => {
 
 /** It passes by query the page to go */
 function goToPage(page: number) {
+    emit('onClick')
     router.push({
         query: { ...route.query, page}
     })
-    /** something to do on click */
-    emit('onClick')
 }
 /** It shows previous indexes */
 function goToPreviousBlock() {
@@ -74,8 +73,8 @@ block.value = Math.trunc(page / props.maxPerView)
     box-sizing: border-box;
     padding: 10px;
     max-width: 100vw;
-    overflow: hidden;
     position: relative;
+    overflow-x: hidden;
     .pag-index {
         padding: 3px;
         margin: 5px 3px;
@@ -106,12 +105,6 @@ block.value = Math.trunc(page / props.maxPerView)
             );
         }
         $i: $i + $step;
-    }
-}
-
-@media screen and (max-width: $phone) {
-    .pagination-container {
-        max-height: $font-size-l;
     }
 }
 </style>
