@@ -28,6 +28,9 @@ const cardFields = computed(() => {
     return propsArray
 })
 
+/** Gives format the url that will be passed to css */
+const image = computed(() => { return `url('${props.background}')` }) 
+
 function setShowText(show:boolean) {
     clearTimeout(showTextFunction)
     showTextFunction = setTimeout(() => { showText.value = show }, 230);    
@@ -58,7 +61,7 @@ function setShowText(show:boolean) {
         aspect-ratio: 1/1;
         flex: 0 1 25%;
         .card-sub-container{
-            background-image: v-bind(background);
+            background-image: v-bind(image);
             background-size: cover;
             transition: all .5s ease-in-out 0s;
             min-width: 100%;

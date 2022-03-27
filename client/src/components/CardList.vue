@@ -22,7 +22,7 @@ function getCardFieldsList(element:{[key: string]: string}) : Object {
     for (const prop in props.fields){
         response[prop] = element[props.fields[prop]]
     }
-    
+
     return response
 }
 
