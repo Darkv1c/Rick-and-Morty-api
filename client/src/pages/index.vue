@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex index-container">
-    <Header title="Rick & Morty" class="index-header"/>
-    <Card :object="{}"/>
+    <Header title="Rick & Morty" class="index-header" />
+    <Card :fields="{name: 'Victor', 'last-name': 'Orellano'}" background="url('https://lenguajejs.com/vuejs/componentes/composition-api/options-api-composition-api.png')"/>
   </div>
 </template>
 

@@ -1,4 +1,5 @@
-<script lang="ts" setup>
+<script setup lang="ts">
+import { computed } from '@vue/reactivity';
 import { ref } from 'vue'
 
 let showTextFunction:ReturnType<typeof setTimeout>
@@ -7,27 +8,40 @@ let showText = ref(false)
 
 const props = defineProps({
     /** Info to show in the cart */
-    object: { type: Object, request: true },
+    fields: Object,
     /** Indicates number of the card */
-    identifier: Number
+    identifier: Number,
+    /** the background of the card, it has to be passad like a background-image css property */
+    background: String
+})
+
+/** A list with the props of the object
+ * @example [{name: 'Jhon'}, {'last-name': 'Doe'}]
+ */
+const cardFields = computed(() => {
+    let propsArray = []
+
+    for (let prop in props.fields){
+        propsArray.push({[prop]: props.fields[prop]})
+    }
+
+    return propsArray
 })
 
 function setShowText(show:boolean) {
     clearTimeout(showTextFunction)
     showTextFunction = setTimeout(() => { showText.value = show }, 230);    
 }
-function onCardClick(){
-}
 </script>
 
-<template lang="">
-    <div :class="'card-container c-pointer card-container-'"
-        @mouseover="()=>setShowText(true)" @mouseleave="()=>setShowText(false)" @click="goToDetails">
-        <div :class="'card-sub-container neon-text card-sub-container'" :style="`background-image: url('${object.image}')`">
+<template>
+    <div :class="'card-container c-pointer card-container'"
+        @mouseover="()=>setShowText(true)" @mouseleave="()=>setShowText(false)">
+        <div :class="'card-sub-container neon-text card-sub-container'">
             <div v-show="showText" class="card-text-container d-flex">
-                <span>Name: Juan</span>
-                <span>Species: perro </span>
-                <span>Status: vivo </span>
+                <span v-for="(prop, n) in cardFields" :key="'cardField' + n">
+                    {{Object.keys(prop)[0]}}: {{prop[Object.keys(prop)[0]]}}
+                </span>
             </div>
         </div>
     </div>
@@ -35,6 +49,7 @@ function onCardClick(){
 
 <style lang="scss" scoped>
     .card-container{
+        background-image: v-bind(background);
         max-width: 250px;
         max-height: 250px;
         min-width: 150px;
