@@ -1,7 +1,25 @@
 //#region font-style
-.neon-text{  
-    color: transparent;
-    -webkit-text-stroke: 1.5px $clr-green;
-    letter-spacing: 2px;
-  }
+.neon-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px $clr-green;
+  letter-spacing: 2px;
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.container {
+  box-sizing: border-box;
+  padding: 2% 4%;
+}
 //#endregion

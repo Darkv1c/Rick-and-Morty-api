@@ -37,7 +37,7 @@ function setShowText(show:boolean) {
 <template>
     <div :class="'card-container c-pointer card-container'"
         @mouseover="()=>setShowText(true)" @mouseleave="()=>setShowText(false)">
-        <div :class="'card-sub-container neon-text card-sub-container'">
+        <div :class="'card-sub-container neon-text'">
             <div v-show="showText" class="card-text-container d-flex">
                 <span v-for="(prop, n) in cardFields" :key="'cardField' + n">
                     {{Object.keys(prop)[0]}}: {{prop[Object.keys(prop)[0]]}}
@@ -49,7 +49,6 @@ function setShowText(show:boolean) {
 
 <style lang="scss" scoped>
     .card-container{
-        background-image: v-bind(background);
         max-width: 250px;
         max-height: 250px;
         min-width: 150px;
@@ -59,6 +58,7 @@ function setShowText(show:boolean) {
         aspect-ratio: 1/1;
         flex: 0 1 25%;
         .card-sub-container{
+            background-image: v-bind(background);
             background-size: cover;
             transition: all .5s ease-in-out 0s;
             min-width: 100%;
@@ -66,8 +66,10 @@ function setShowText(show:boolean) {
             border-radius: 40px;
             position: relative  ;
             .card-text-container{
-                background: linear-gradient(to bottom, rgba(var(--clr-black), .8), rgba(var(--clr-black), .5), rgba(var(--clr-black), .8), 
-                rgba(var(--clr-black), .5), rgba(var(--clr-black), .8), rgba(var(--clr-black), .5));
+                display: flex;
+                flex-direction: column;
+                background: linear-gradient(to bottom, rgba($clr-black, .8), rgba($clr-black, .5), rgba($clr-black, .8), 
+                rgba($clr-black, .5), rgba($clr-black, .8), rgba($clr-black, .5));
                 min-width: 100%;
                 min-height: 100%;
                 border-radius: 40px;
