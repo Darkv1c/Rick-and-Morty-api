@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia';
 import { useCharacterStore } from '../store'
 import CardList from '../components/CardList.vue';
 import { computed } from '@vue/reactivity';
+import Pagination from '../components/Pagination.vue';
 
 const characterStore = useCharacterStore()
 const { characterList } = storeToRefs(characterStore)
@@ -28,12 +29,14 @@ const getFields = computed(() => {
 			:list="characterList.results"
 			img-property="image"
 		/>
+		<Pagination :max-per-view="10" :last-index="20"/>
 	</div>
 </template>
 
 <style lang="scss" scoped>
 .index-container {
 	height: 100vh;
+	justify-content: space-between;
 }
 .index-card-list {
 	min-height: 70vh;
@@ -49,7 +52,7 @@ const getFields = computed(() => {
 		max-height: calc(100vh - 60px);
 	}
 	.index-header {
-		display: none;
+		display: none !important;
 	}
 }
 </style>

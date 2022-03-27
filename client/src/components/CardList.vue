@@ -51,7 +51,6 @@ function getImgUrl(element:{[key: string]: string}, propertyName:string):string{
         flex-wrap: wrap;
         width: 100%;
         box-sizing: border-box;
-        max-height: 40vh;
         overflow-y: scroll;
         justify-content: center;
     }

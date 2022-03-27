@@ -134,26 +134,26 @@ function setShowText(show:boolean) {
                     left: 0;
                     transform: rotateY(0deg);
                     border-radius: 0;
-                    animation: none;
+                    animation-name: none;
                     background: transparent;
                     span{
                         max-width: 50%;
                     }
+                    &:hover{
+                        animation-name: gradientChange;
+                    }
                 }
             }
         }
-        @for $i from 0 to 10 {
-            .card-container {
-                @if ($i%2==1) {
-                    flex-direction: row-reverse;
-                } @else {
-                    background: rgba(white, 0.3);
-                    text-align: end;
-                    .card-text-container{
-                        align-items: flex-end;
-                    }
-                }          
-            }
+
+        .card-text-container {
+           align-items: flex-end;
+        }
+        .card-container:nth-child(2n+1){
+            flex-direction: row-reverse;
+             .card-text-container {
+            align-items: flex-start;
+        }
         }
     }
 </style>
