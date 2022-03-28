@@ -1,57 +1,33 @@
-<template lang="">
-    <div class="d-flex">
-        <Header :onGoBack="`/`" />
-        <div v-if="!isLoading" class="container">
-            <img id="main-picture" :src="this.currentCharacter.image"/>
-            <div class="neon-text details-text">
-                <span>Name: {{this.currentCharacter.name || " - "}}</span>
-                <span>Status: {{this.currentCharacter.status || " - "}}</span>
-                <span>Type: {{this.currentCharacter.type || " - "}}</span>
-                <span>Gender: {{this.currentCharacter.gender || " - "}}</span>
-                <span>Origin: {{this.currentCharacter.origin.name || " - "}}</span>
-                <span>Location: {{this.currentCharacter.location.name || " - "}}</span>
-                <span>
-                    Episodes: 
-                        <ul v-if="episodeList.length">
-                            <li v-for="episode in episodeList" :key="'episode' + episode.id">
-                                {{episode.name}}
-                            </li>
-                        </ul>
-                        <span v-else> - </span>                  
-                </span>
-            </div>
-        </div>
-        <Loading v-else />
-    </div>
-</template>
-<script>
-import { mapState, mapActions, mapMutations } from 'vuex'
-import { Loading, Header } from '@/components'
+<script setup lang="ts">import { defineStore, storeToRefs } from 'pinia'
+import { useRoute } from 'vue-router'
+import { useCharacterStore } from '../../store'
 
-export default {
-    components: { Loading, Header },
-    computed: {
-        ...mapState('character', ['currentCharacter']),
-        ...mapState('episode', ['episodeList']),
-        ...mapState(['isLoading'])
-    },
-    methods: {
-        ...mapActions('character', ['getCharacter', 'characterList']),
-        ...mapActions('episode', ['getEpisodeList']),
-        ...mapMutations(['setIsLoading'])
-    },
-    async created() {
-        let episodeNumberList = []
-        this.setIsLoading(true)
-        if (!this.currentCharacter.id){
-            await this.getCharacter(this.$route.params.id)
-        }
-        episodeNumberList = this.currentCharacter.episode.map(e => e.split("/").pop())
-        await this.getEpisodeList(episodeNumberList)
-        this.setIsLoading(false)
-    }
+const route = useRoute()
+const characterStore = useCharacterStore()
+const { currentCharacter } = storeToRefs(characterStore)
+
+if (!currentCharacter){
+    characterStore.getCharacter(Number(route.params.id))
 }
 </script>
+
+<template>
+    <div class="d-flex">
+        <Header :onGoBack="`/`" />
+        <div v-if="currentCharacter" class="container">
+            <img id="main-picture" :src="currentCharacter.image"/>
+            <div class="neon-text details-text">
+                <span>Name: {{currentCharacter.name || " - "}}</span>
+                <span>Status: {{currentCharacter.status || " - "}}</span>
+                <span>Type: {{currentCharacter.type || " - "}}</span>
+                <span>Gender: {{currentCharacter.gender || " - "}}</span>
+                <span>Origin: {{currentCharacter.origin.name || " - "}}</span>
+                <span>Location: {{currentCharacter.location.name || " - "}}</span>
+            </div>
+        </div>
+    </div>
+</template>
+
 <style lang="scss" scoped>
     .container{
         display: grid;

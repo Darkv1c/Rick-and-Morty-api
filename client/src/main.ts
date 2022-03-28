@@ -1,5 +1,5 @@
 import { Component, createApp } from 'vue'
-import routes from 'pages-generated'
+import routes from '~pages'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import App from './App.vue'
 import components from './components'

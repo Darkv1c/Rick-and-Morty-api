@@ -10,13 +10,18 @@ export const useCharacterStore = defineStore('character', {
         currentCharacter: null
     }),
     actions: {
-        /**Gets the characters from the api and sets characterList state with the response
+        /** Gets the characters from the api and sets characterList state with the response
          * @param page the number of the page to bring         
          */
         async getCharacters(page:number) {
             await axios.get('/character', {params: {page}})
             .then(({data}) => this.characterList = data)
             .catch(error => {throw error})
+        },
+        async getCharacter( id:number ) {
+            await axios.get('/character/' + id)
+            .then(({data}) => this.currentCharacter = data)
+            .catch(error => { throw error })
         }
     }
 })

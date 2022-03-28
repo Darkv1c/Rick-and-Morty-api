@@ -6,9 +6,8 @@ import * as path from 'path'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue(), pages({
-    dirs: 'src/pages'
-  }
-  )],
+    routeStyle: 'nuxt'
+  })],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

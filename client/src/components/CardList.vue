@@ -8,7 +8,7 @@ const props = defineProps({
      */
     fields: {type: Object as PropType<{[key: string]: string}>, require: true, default: ()=>({})},
     /** An array of objects */
-    list: {type: Array as PropType<Array<{[key: string]: string}>>, require: true, default: null},
+    list: {type: Array as PropType<Array<{[key: string]: any}>>, require: true, default: null},
     /** The name of the property that contains the url of the image to show in the card */
     imgProperty: {type: String, default: ''}
 })
