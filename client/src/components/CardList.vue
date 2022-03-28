@@ -35,7 +35,7 @@ function getImgUrl(element:{[key: string]: string}, propertyName:string):string{
     return element[propertyName]
 }
 function onClick(element:{ [key: string]: string; }){
-    emit('onCardClick', element.id)
+    emit('onCardClick', element)
 }
 </script>
 

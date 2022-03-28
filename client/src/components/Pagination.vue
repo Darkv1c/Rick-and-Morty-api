@@ -68,6 +68,7 @@ block.value = Math.trunc(page / props.maxPerView)
     font-weight: 800;
     font-size: $font-size-m;
     height: 100px;
+    min-height: 50px;
     display: flex;
     justify-content: center;
     box-sizing: border-box;

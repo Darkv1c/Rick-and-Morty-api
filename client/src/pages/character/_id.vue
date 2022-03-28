@@ -6,8 +6,11 @@ const route = useRoute()
 const characterStore = useCharacterStore()
 const { currentCharacter } = storeToRefs(characterStore)
 
+console.log('character', currentCharacter.value)
+
 if (!currentCharacter){
     characterStore.getCharacter(Number(route.params.id))
+    .then(response => console.log(response))
 }
 </script>
 
