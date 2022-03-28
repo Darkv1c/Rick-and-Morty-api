@@ -40,10 +40,13 @@ function onGoBackClick():string|Function {
     </div>
 </template>
 
-<style lang="scss" scoped> 
+<style lang="scss" scoped>
     .header-container {
+        $height: 90px;
         background: rgba($clr-black, 0.8);
-        height: 150px;
+        height: $height;
+        max-height: $height;
+        min-height: $height;
         min-width: 100%;
         flex-direction: row !important;
         align-items: center;
