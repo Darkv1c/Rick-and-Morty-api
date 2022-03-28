@@ -28,7 +28,7 @@ async function loadPage(){
 }
 function goToDetails(character: character){
 	currentCharacter.value = character
-	router.push('/character/' + character)
+	router.push('/character/' + character?.id)
 }
 </script>
 
